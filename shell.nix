@@ -3,8 +3,11 @@
 pkgs.mkShell
 {
   buildInputs = [
-    pkgs.rustup
+    pkgs.rustc
+    pkgs.cargo
+    pkgs.rustfmt
     pkgs.rust-analyzer
+    pkgs.clippy
     pkgs.lldb
     pkgs.nil
   ]; 
