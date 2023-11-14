@@ -8,11 +8,10 @@
 
   outputs = { self, nixpkgs, ... }: 
     let
-      system = "x86_64-linux";
+      system = "aarch64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-  
-    in
+      in
     {
-      devShells.x86_64-linux.default = (import ./shell.nix { inherit pkgs; });
+      devShells.${system}.default = (import ./shell.nix { inherit pkgs; });
     };
 }
