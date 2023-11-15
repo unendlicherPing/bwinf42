@@ -22,10 +22,15 @@
       formatter.${system} = pkgs.nixpkgs-fmt;
       devShells.${system}.default = import ./shell.nix { inherit pkgs; };
 
-      packages.${system}.aufgabe-2 = import ./aufgabe-2.nix { inherit pkgs; inherit toolchain; };
-      apps.${system}.aufgabe-2 = {
+      packages.${system}.default = import ./default.nix { inherit pkgs; inherit toolchain; };
+
+      apps.${system}."aufgabe-1" = {
         type = "app";
-        program = "${self.packages.${system}.aufgabe-2}/bin/aufgabe-2";
+        program = "${self.packages.${system}.default}/bin/aufgabe-1";
+      };
+      apps.${system}."aufgabe-2" = {
+        type = "app";
+        program = "${self.packages.${system}.default}/bin/aufgabe-2";
       };
     };
 }
