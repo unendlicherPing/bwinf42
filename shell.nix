@@ -10,5 +10,5 @@ pkgs.mkShell
     pkgs.clippy
     pkgs.lldb
     pkgs.nil
-  ]; 
+  ];
 }

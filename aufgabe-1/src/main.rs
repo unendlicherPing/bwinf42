@@ -1,8 +1,8 @@
-use clap::Parser;
 use arukone::ArukoneGenerator;
+use clap::Parser;
 
-pub mod arukone;
 pub mod args;
+pub mod arukone;
 
 fn main() {
     let args = args::Args::parse();
@@ -10,7 +10,7 @@ fn main() {
     let n = args.n;
     let seed = match args.seed {
         Some(x) => x,
-        None => rand::random()
+        None => rand::random(),
     };
 
     let arukone = arukone::Arukone::generate(n, seed);

@@ -42,17 +42,16 @@ impl ArukoneGenerator for Arukone {
 
 impl std::fmt::Display for Arukone {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.write_fmt(format_args!("{}\n{}\n", self.size, self.pairs))?;
+        write!(f, "{}\n{}\n", self.size, self.pairs)?;
 
-        for row in self.map.iter() {
-            for column in row {
-                f.write_fmt(format_args!("{column} "))?
-            }
-
-            f.write_str("\n")?
-        }
-
-        Ok(())
+        self.map
+            .iter()
+            .map(|row| {
+                row.iter()
+                    .map(|col| write!(f, "{col} "))
+                    .collect::<std::fmt::Result>()
+                    .and(writeln!(f))
+            })
+            .collect()
     }
 }
-
