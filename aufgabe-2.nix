@@ -1,20 +1,12 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs, toolchain }:
 
-pkgs.stdenv.mkDerivation {
-	name = "aufgabe-2";
-	src = ./.;
+(pkgs.makeRustPlatform {
+  cargo = toolchain;
+  rustc = toolchain;
+}).buildRustPackage {
+  name = "aufgabe-2";
+  pname = "aufgabe-2";
+  src = ./.;
 
-	buildInputs = [
-		pkgs.rustc
-		pkgs.cargo
-	];
-
-	buildPhase = ''
-		cargo build --release --bin aufgabe-2
-	'';
-
-	installPhase = ''
-		mkdir -p $out/bin
-		cp target/release/aufgabe-2 $out/bin
-	'';
+  cargoLock.lockFile = ./Cargo.lock;
 }
