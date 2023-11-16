@@ -1,5 +1,5 @@
 {
-  description = "Bundeswetbewerb Informatik";
+  description = "Bundeswetbewerb Informatik 42";
 
   inputs =
     {
@@ -24,13 +24,25 @@
 
       packages.${system}.default = import ./default.nix { inherit pkgs; inherit toolchain; };
 
-      apps.${system}."aufgabe-1" = {
-        type = "app";
-        program = "${self.packages.${system}.default}/bin/aufgabe-1";
-      };
-      apps.${system}."aufgabe-2" = {
-        type = "app";
-        program = "${self.packages.${system}.default}/bin/aufgabe-2";
+      apps.${system} = {
+        default = {
+          type = "app";
+          program =
+            let
+              message = pkgs.writeShellScriptBin "message" ''
+                echo "please use nix run .#aufgabe-[1|2] instead"
+              '';
+            in
+            "${message}/bin/message";
+        };
+        aufgabe-1 = {
+          type = "app";
+          program = "${self.packages.${system}.default}/bin/aufgabe-1";
+        };
+        aufgabe-2 = {
+          type = "app";
+          program = "${self.packages.${system}.default}/bin/aufgabe-2";
+        };
       };
     };
 }

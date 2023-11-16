@@ -4,8 +4,8 @@
   cargo = toolchain;
   rustc = toolchain;
 }).buildRustPackage {
-  name = "aufgabe-2";
-  pname = "aufgabe-2";
+  name = "bwinf42";
+  pname = "bwinf42";
   src = ./.;
 
   cargoLock.lockFile = ./Cargo.lock;

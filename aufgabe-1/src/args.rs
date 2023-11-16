@@ -3,9 +3,6 @@ use clap::Parser;
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 pub struct Args {
-    #[arg(short, long, required = true)]
-    pub n: usize,
-
-    #[arg(short, long)]
-    pub seed: Option<usize>,
+    #[arg(long, required = true)]
+    pub size: usize,
 }
